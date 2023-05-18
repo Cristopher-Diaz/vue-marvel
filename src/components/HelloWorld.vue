@@ -31,10 +31,19 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted () {
+    // Puse la url de poke api para pruebas solamente... luego la cambiamos a la oficial de marvel
+    const namePokemon = 'ditto'
+    axios({
+      method: 'get',
+      url: `https://pokeapi.co/api/v2/pokemon/${namePokemon}`
+    }).then(resp => resp)
   }
 }
 </script>
