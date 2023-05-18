@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### Node version development
+```
+v14.15.3
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
