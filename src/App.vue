@@ -1,15 +1,12 @@
 <template>
-  <div id="app">
-    <b-container>
-      <!-- <b-alert show variant="danger" dismissible>Alerta</b-alert> -->
-      <card-render></card-render>
-      <table-render></table-render>
-    </b-container>
+  <div>
+    <nav-bar></nav-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  
+
 }
 </script>
