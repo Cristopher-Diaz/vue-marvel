@@ -5,7 +5,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
-import 'bootstrap/dist/css/bootstrap.css'
+import './assets/_custom.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // Global Components
