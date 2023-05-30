@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Table Render</h1>
-    <b-table striped hover :items="items"></b-table>
+    <b-table sticky-header responsive bordered hover head-variant="dark" :items="items"></b-table>
   </div>
 </template>
 
