@@ -9,7 +9,8 @@
             <b-collapse id="nav-text-collapse" is-nav>
                 <b-navbar-nav>
                     <b-button class="mr-2" variant="primary"><router-link class="link" to="/">Home</router-link></b-button>
-                    <b-button variant="primary"><router-link class="link" to="/about">About</router-link></b-button>
+                    <b-button class="mr-2" variant="primary"><router-link class="link" to="/about">About</router-link></b-button>
+                    <b-button class="mr-2" variant="primary"><router-link class="link" to="/characters">Personajes</router-link></b-button>
                 </b-navbar-nav>
             </b-collapse>
         </b-container>
