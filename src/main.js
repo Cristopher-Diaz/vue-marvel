@@ -2,8 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import BootstrapVue from 'bootstrap-vue'
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
 
 import './assets/_custom.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
