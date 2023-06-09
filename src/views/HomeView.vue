@@ -45,28 +45,25 @@
       </div>
       <b-container class="mt-3">
         <b-row class="align-items-center">
-          <b-col lg="4" class="mx-auto p-lg-4 mt-lg-0 mt-4">
-            <b-card
-              title="Card Title"
-              img-src="https://picsum.photos/600/300/?image=25"
-              img-alt="Image"
-              img-top
-              tag="article"
-              class="mb-2"
-            >
-              <b-card-text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </b-card-text>
-
-              <b-button href="#" variant="primary">Go somewhere</b-button>
-            </b-card>
+          <b-col lg="4" class="mx-auto p-lg-4 my-lg-0 my-4">
+            <div class="card-rotate">
+              <div class="front bg-dark"></div>
+              <div class="back bg-primary">
+                <span class="text-light">
+                  <h1>Lorem, ipsum.</h1>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Nihil, magnam hic alias molestiae magni, cumque minus
+                  voluptate, ducimus quo inventore eius. Impedit provident
+                  cumque repudiandae minus, tenetur quaerat unde facere!
+                </span>
+              </div>
+            </div>
           </b-col>
           <b-col lg="6" class="ml-auto">
             <b-row class="justify-content-start">
               <b-col md="6">
                 <b-card
-                  border-variant="light"
+                  border-variant="info"
                   header="Primary"
                   class="text-start"
                 >
@@ -77,7 +74,7 @@
               </b-col>
               <b-col md="6">
                 <b-card
-                  border-variant="light"
+                  border-variant="info"
                   header="Secondary"
                   class="text-start"
                 >
@@ -90,7 +87,7 @@
             <b-row class="justify-content-start mt-4">
               <b-col md="6">
                 <b-card
-                  border-variant="light"
+                  border-variant="info"
                   header="Primary"
                   class="text-start"
                 >
@@ -101,7 +98,7 @@
               </b-col>
               <b-col md="6">
                 <b-card
-                  border-variant="light"
+                  border-variant="info"
                   header="Secondary"
                   class="text-start"
                 >
@@ -132,5 +129,75 @@ export default {
   background-size: cover;
   background-attachment: fixed;
   filter: brightness(0.35);
+}
+
+.card-rotate {
+  width: 100%;
+  height: 350px;
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: .5s;
+  backface-visibility: hidden;
+  box-shadow: 0px 0px 30px #000;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  box-shadow: 1px 1px 20px #000;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  transition: .5s;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-rotate .front:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.1);
+  transform: rotate(45deg);
+}
+
+.card-rotate .back:before {
+  content: "";
+  position: absolute;
+  top: 10%;
+  left: -65%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.1);
+  transform: rotate(45deg);
+}
+
+.card-rotate .back span{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  text-align: center;
+}
+
+.card-rotate:hover .front{
+  transform: rotateY(180deg);
+}
+
+.card-rotate:hover .back{
+  transform: rotateY(0);
 }
 </style>
