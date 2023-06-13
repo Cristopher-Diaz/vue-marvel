@@ -20,13 +20,13 @@
             </b-tr>
           </b-thead>
           <b-tbody>
-            <b-tr class="text-muted" v-for="(item, index) in items" :key="index">
-              <b-td>{{ item.age }}</b-td>
-              <b-td>{{ item.first_name }}</b-td>
-              <b-td>{{ item.last_name }}</b-td>
-              <b-td>{{ item.first_name }}</b-td>
-              <b-td>{{ item.last_name }}</b-td>
-              <b-td><b-badge pill variant="primary">{{item.state}}</b-badge></b-td>
+            <b-tr class="text-muted" v-for="(row, index) in rows" :key="index">
+              <b-td>{{ row.age }}</b-td>
+              <b-td>{{ row.first_name }}</b-td>
+              <b-td>{{ row.last_name }}</b-td>
+              <b-td>{{ row.first_name }}</b-td>
+              <b-td>{{ row.last_name }}</b-td>
+              <b-td><b-badge pill variant="primary">{{row.state}}</b-badge></b-td>
               <b-td>
                 <b-button variant="success">Si</b-button>
                 <b-button variant="danger">No</b-button>
@@ -41,14 +41,14 @@
 
 <script>
 export default {
+  props: {
+    rows: {
+      type: Array
+    }
+  },
   data() {
     return {
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald", state: true },
-        { age: 21, first_name: "Larsen", last_name: "Shaw", state: false },
-        { age: 89, first_name: "Geneva", last_name: "Wilson", state: true },
-        { age: 38, first_name: "Jami", last_name: "Carney", state: false },
-      ],
+
     };
   },
 };
