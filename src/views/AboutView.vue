@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <table-render :rows="items"></table-render>
+    <table-render :rows="items" :actions="showActions"></table-render>
     <card-render></card-render>
   </b-container>
 </template>
@@ -11,12 +11,12 @@ export default {
   data() {
     return {
       // Arreglo a iterar en la tabla
-      items: [
-        { age: 40, first_name: "Dickerson", last_name: "Macdonald", state: true },
-        { age: 21, first_name: "Larsen", last_name: "Shaw", state: false },
-        { age: 89, first_name: "Geneva", last_name: "Wilson", state: true },
-        { age: 38, first_name: "Jami", last_name: "Carney", state: false },
-      ]
+      items:  [
+        { id: 1, name: 'John Doe', age: 30, classifications: 'Si' },
+        { id: 2, name: 'Jane Smith', age: 25, classifications: 'No' },
+        { id: 3, name: 'Bob Johnson', age: 40, classifications: 'Nose' }
+      ],
+      showActions: true
     }
   }
 }

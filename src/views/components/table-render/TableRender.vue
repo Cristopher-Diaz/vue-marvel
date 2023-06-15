@@ -7,7 +7,7 @@
         <b-button variant="info">Ver más</b-button>
       </div>
       <div>
-        <b-table-simple responsive variant="light">
+        <!-- <b-table-simple responsive variant="light">
           <b-thead>
             <b-tr class="text-black-50">
               <b-th>Edad</b-th>
@@ -28,12 +28,20 @@
               <b-td>{{ row.last_name }}</b-td>
               <b-td><b-badge pill variant="primary">{{row.state}}</b-badge></b-td>
               <b-td>
-                <b-button variant="success">Si</b-button>
-                <b-button variant="danger">No</b-button>
+                <b-button variant="success"><b-icon icon="arrow-up"></b-icon></b-button>
+                <b-button variant="danger"><b-icon icon="exclamation-triangle"></b-icon></b-button>
               </b-td>
             </b-tr>
           </b-tbody>
-        </b-table-simple>
+        </b-table-simple> -->
+        <b-table :items="rows">
+          <template v-if="actions">
+            <template>
+              <b-button variant="success"><b-icon icon="arrow-up"></b-icon></b-button>
+              <b-button variant="danger"><b-icon icon="exclamation-triangle"></b-icon></b-button>
+            </template>
+          </template>
+        </b-table>
       </div>
     </div>
   </div>
@@ -43,14 +51,13 @@
 export default {
   props: {
     rows: {
-      type: Array
+      type: Array,
+      required: true
+    },
+    actions: {
+      type: Boolean
     }
-  },
-  data() {
-    return {
-
-    };
-  },
+  }
 };
 </script>
 
