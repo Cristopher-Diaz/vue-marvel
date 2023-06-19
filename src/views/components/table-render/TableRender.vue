@@ -7,39 +7,16 @@
         <b-button variant="info">Ver más</b-button>
       </div>
       <div>
-        <!-- <b-table-simple responsive variant="light">
-          <b-thead>
-            <b-tr class="text-black-50">
-              <b-th>Edad</b-th>
-              <b-th>Primer nombre</b-th>
-              <b-th>Segundo nombre</b-th>
-              <b-th>Primer nombre</b-th>
-              <b-th>Segundo nombre</b-th>
-              <b-th>Estado</b-th>
-              <b-th>Acciones</b-th>
-            </b-tr>
-          </b-thead>
-          <b-tbody>
-            <b-tr class="text-muted" v-for="(row, index) in rows" :key="index">
-              <b-td>{{ row.age }}</b-td>
-              <b-td>{{ row.first_name }}</b-td>
-              <b-td>{{ row.last_name }}</b-td>
-              <b-td>{{ row.first_name }}</b-td>
-              <b-td>{{ row.last_name }}</b-td>
-              <b-td><b-badge pill variant="primary">{{row.state}}</b-badge></b-td>
-              <b-td>
-                <b-button variant="success"><b-icon icon="arrow-up"></b-icon></b-button>
-                <b-button variant="danger"><b-icon icon="exclamation-triangle"></b-icon></b-button>
-              </b-td>
-            </b-tr>
-          </b-tbody>
-        </b-table-simple> -->
-        <b-table :items="rows">
-          <template v-if="actions">
-            <template>
+        <!-- <b-badge pill variant="primary">{{row.state}}</b-badge> -->
+        <b-table :items="rows" :fields="fields">
+          <template #head(actions)="scope">
+            <div class="text-center">{{ scope.label }}</div>
+          </template>
+          <template #cell(actions)>
+            <div class="text-center">
               <b-button variant="success"><b-icon icon="arrow-up"></b-icon></b-button>
-              <b-button variant="danger"><b-icon icon="exclamation-triangle"></b-icon></b-button>
-            </template>
+              <b-button variant="danger" class="ml-2"><b-icon icon="exclamation-triangle"></b-icon></b-button>
+            </div>
           </template>
         </b-table>
       </div>
@@ -54,8 +31,9 @@ export default {
       type: Array,
       required: true
     },
-    actions: {
-      type: Boolean
+    fields: {
+      type: Array,
+      required: true
     }
   }
 };

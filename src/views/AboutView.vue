@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <table-render :rows="items" :actions="showActions"></table-render>
+    <table-render :rows="items" :fields="fields"></table-render>
     <card-render></card-render>
   </b-container>
 </template>
@@ -11,12 +11,18 @@ export default {
   data() {
     return {
       // Arreglo a iterar en la tabla
+      fields: [
+        'first_name',
+        'last_name',
+        'age',
+        {key: 'actions'}
+        ],
       items:  [
-        { id: 1, name: 'John Doe', age: 30, classifications: 'Si' },
-        { id: 2, name: 'Jane Smith', age: 25, classifications: 'No' },
-        { id: 3, name: 'Bob Johnson', age: 40, classifications: 'Nose' }
-      ],
-      showActions: true
+        { age: 40, last_name: 'Dickerson', first_name: 'Macdonald' },
+        { age: 21, last_name: 'Larsen', first_name: 'Shaw' },
+        { age: 89, last_name: 'Geneva', first_name: 'Wilson' },
+        { age: 38, last_name: 'Jami', first_name: 'Carney' }
+      ]
     }
   }
 }
