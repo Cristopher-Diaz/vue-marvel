@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <table-render></table-render>
-    <card-render :characters="marvelData"></card-render>
+    <card-render :cardData="marvelData" :typeInfo="typeInfo"></card-render>
   </b-container>
 </template>
 
@@ -17,7 +17,8 @@ export default {
   data() {
     return {
       charactersService: new CharactersService(this),
-      marvelData: []
+      marvelData: [],
+      typeInfo: "Personaje"
     };
   },
   methods: {},
