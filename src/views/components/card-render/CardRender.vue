@@ -1,9 +1,8 @@
 <template>
   <div>
-    <!-- <div v-for="data in cardData" :key="data.id"> -->
       <div class="row">
-      <!-- <b-card-group > -->
         <b-card v-for="data in cardData" :key="data.id"
+          v-show="loadingCard"
           :title="data.name"
           :img-src="data.thumbnail.path+'.'+data.thumbnail.extension"
           img-alt="Imagen super héroe"
@@ -17,9 +16,28 @@
             </b-card-text>
             <b-button variant="warning" class="mx-auto d-block" @click="returnCardData(data)">Conocer más</b-button>
         </b-card>
-      <!-- </b-card-group> -->
+        <!-- loading DIV -->
+        <div v-show="!loadingCard" class="row">
+          <b-card no-body img-top class="col-md-12 mb-3">
+            <b-skeleton-img card-img="top" aspect="3:1"></b-skeleton-img>
+            <b-card-body>
+              <div>
+                <span> Cargando información... <b-spinner label="Spinning"></b-spinner> </span>
+              </div>
+              <b-skeleton width="100%"></b-skeleton>
+            </b-card-body>
+          </b-card>
+          <b-card no-body img-top class="col-md-12">
+            <b-skeleton-img card-img="top" aspect="3:1"></b-skeleton-img>
+            <b-card-body>
+              <div>
+                <span> Cargando información... <b-spinner label="Spinning"></b-spinner> </span>
+              </div>
+              <b-skeleton width="100%"></b-skeleton>
+            </b-card-body>
+          </b-card>
+        </div>
       </div>
-    <!-- </div> -->
   </div>
 </template>
 
@@ -30,6 +48,7 @@ export default {
    * El componente recibira una 'props'
    * 1) cardData: Corresponde a un array con la data a mostrar
    * 2) orderCards: Corresponde a un número que indicara la cantidad de card por "fila"
+   * 3) loadingCard: Valor de tipo Boolean, activa o desactiva el "loading"
    */
   props: {
     cardData: {
@@ -37,6 +56,9 @@ export default {
     },
     orderCards: {
       type: Number
+    },
+    loadingCard: {
+      type: Boolean
     }
   },
   data() {
@@ -52,14 +74,6 @@ export default {
     else if (this.orderCards === 3) this.orderClass = 'col-md-4'
     else this.orderClass = 'col-md-6'
   },
-  /**
- *     orderCards = 3
-    cada card ----- col-md-4
-    orderCards = 2
-    cada card ----- col-md-6
-    orderCards = 1
-    cada card ----- col-md-12
-   */
   methods: {
     /**
      * Funcion que devuelve un evento (emit) hacia el componente padre
