@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <table-render :rows="marvelComics" :fields="fields" @sendData="getRowData"></table-render>
+    <table-render :rows="marvelComics" :fields="fields"></table-render>
     <card-render></card-render>
   </b-container>
 </template>
@@ -30,26 +30,12 @@ export default {
   },
   // Al momento de cargar la vista se llama a la API y se crea un objeto con la info justa para mandarla al array de marvelComics
   mounted() {
-    this.comicsService.callService('getComics')
-      .then(res => res.data.data.results.forEach(data => {
-        const dataObj = {
-          id: data.id,
-          title: data.title,
-          pageCount: data.pageCount,
-          modified: this.dateFormat(data.modified),
-          description: data.description,
-          icon: `${data.thumbnail.path}.${data.thumbnail.extension}`
-        }
-        this.marvelComics.push(dataObj)
-      }))
+    // fetch API
   },
   // Formateo de fecha
   methods: {
     dateFormat(date) {
       return new Date(date).toLocaleDateString('en-GB')
-    },
-    getRowData (data) {
-      console.log(data)
     }
   }
 }
