@@ -9,7 +9,7 @@
           img-top
           center
           tag="article"
-          class="my-custom-card text-center"
+          class="my-custom-card text-center align-items-center"
           :class="orderClass">
             <b-card-text class="text-center">
               {{ data.description ? data.description : emptyInfo }}
@@ -68,7 +68,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.orderCards)
     if (this.orderCards === 1) this.orderClass = 'col-md-12'
     else if (this.orderCards === 2) this.orderClass = 'col-md-6'
     else if (this.orderCards === 3) this.orderClass = 'col-md-4'

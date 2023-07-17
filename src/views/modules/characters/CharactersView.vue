@@ -1,10 +1,7 @@
 <template>
   <div>
     <h1>Listado de heroes</h1>
-    <div v-for="character in marvelData" :key="character.id">
-      <span> Nombre del tipo: {{character.name}} </span>
-      <img :src="character.thumbnail.path+'.'+character.thumbnail.extension" >
-    </div>
+    <card-render :cardData="marvelData" :orderCards="3" :loadingCard="true" @sendData="marvelData"></card-render>
   </div>
 </template>
 
@@ -16,17 +13,14 @@ export default {
     return {
       charactersService: new CharactersService(this),
       marvelData: []
-    };
+    }
   },
   methods: {},
   mounted() {
-    console.log(this.charactersService);
     this.charactersService.callService('getCharacters')
-      .then(resp => {
-        this.marvelData = resp.data.data.results
-      })
+      .then(res => this.marvelData = res.data.data.results)
   }
-};
+}
 </script>
 
 <style>
