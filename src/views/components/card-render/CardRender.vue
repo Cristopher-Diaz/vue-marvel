@@ -5,7 +5,7 @@
           v-show="loadingCard"
           :title="data.name"
           :img-src="data.thumbnail.path+'.'+data.thumbnail.extension"
-          img-alt="Imagen super héroe"
+          img-alt="Img"
           img-top
           center
           tag="article"

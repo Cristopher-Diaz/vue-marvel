@@ -19,6 +19,11 @@ const routes = [
     name: 'CharactersView',
     component: () => import('../views/modules/characters/CharactersView.vue')
   },
+  {
+    path: '/character/:id',
+    name: 'CharacterView',
+    component: () => import('../views/modules/characters/CharacterView.vue')
+  },
 ]
 
 const router = new VueRouter({

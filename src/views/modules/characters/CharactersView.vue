@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Listado de heroes</h1>
-    <card-render :cardData="marvelData" :orderCards="3" :loadingCard="true" @sendData="marvelData"></card-render>
+    <card-render :cardData="marvelData" :orderCards="3" :loadingCard="loading.card" @sendData="btnInfo"></card-render>
   </div>
 </template>
 
@@ -12,13 +12,23 @@ export default {
   data() {
     return {
       charactersService: new CharactersService(this),
-      marvelData: []
+      marvelData: [],
+      loading: {
+        card: false
+      }
     }
   },
-  methods: {},
+  methods: {
+    btnInfo(data) {
+      this.$router.push(`/character/${data.id}`)
+    }
+  },
   mounted() {
     this.charactersService.callService('getCharacters')
-      .then(res => this.marvelData = res.data.data.results)
+      .then(res => {
+        this.loading.card = true
+        this.marvelData = res.data.data.results
+      })
   }
 }
 </script>
