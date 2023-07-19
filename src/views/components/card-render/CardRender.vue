@@ -17,25 +17,8 @@
             <b-button variant="warning" class="mx-auto d-block" @click="returnCardData(data)">Conocer más</b-button>
         </b-card>
         <!-- loading DIV -->
-        <div v-show="!loadingCard" class="row">
-          <b-card no-body img-top class="col-md-12 mb-3">
-            <b-skeleton-img card-img="top" aspect="3:1"></b-skeleton-img>
-            <b-card-body>
-              <div>
-                <span> Cargando información... <b-spinner label="Spinning"></b-spinner> </span>
-              </div>
-              <b-skeleton width="100%"></b-skeleton>
-            </b-card-body>
-          </b-card>
-          <b-card no-body img-top class="col-md-12">
-            <b-skeleton-img card-img="top" aspect="3:1"></b-skeleton-img>
-            <b-card-body>
-              <div>
-                <span> Cargando información... <b-spinner label="Spinning"></b-spinner> </span>
-              </div>
-              <b-skeleton width="100%"></b-skeleton>
-            </b-card-body>
-          </b-card>
+        <div v-show="!loadingCard" class="mx-auto mt-5">
+          <span>Cargando información...<b-spinner label="Spinning"></b-spinner></span>
         </div>
       </div>
   </div>
