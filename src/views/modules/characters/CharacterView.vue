@@ -5,7 +5,7 @@
         <div class="text-center">
             <h1 class="py-4">{{ character.name }}</h1>
             <b-img
-                class="my-4"
+                class="mb-4"
                 :src="character.thumbnail.path + '.' + character.thumbnail.extension"
                 thumbnail
                 fluid
@@ -15,16 +15,16 @@
             >
             </b-img>
         </div>
-        <div class="pt-4">
-            <div class="pb-3">
+        <div class="row p-4 bg-dark text-light rounded mb-3">
+            <div class="col-6">
                 <h3 class="text-left mb-3">Series relacionadas</h3>
-                <ul>
+                <ul class="pb-0">
                     <li v-for="(serie, index) in character.series.items" :key="index" class="mb-2">
                         {{serie.name}}
                     </li>
                 </ul>
             </div>
-            <div>
+            <div class="col-6">
                 <h3 class="text-left mb-3">Historias relacionadas</h3>
                 <ul class="pb-0">
                     <li v-for="(history, index) in character.stories.items" :key="index" class="mb-2">
@@ -32,6 +32,9 @@
                     </li>
                 </ul>
             </div>
+        </div>
+        <div class="text-center pb-3">
+          <b-button variant="primary"><router-link class="link" to="/characters">Volver a personajes</router-link></b-button>
         </div>
       </b-container>
     </div>
@@ -64,5 +67,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+    .link {
+        text-decoration: none;
+        color: inherit;
+    }
 </style>
