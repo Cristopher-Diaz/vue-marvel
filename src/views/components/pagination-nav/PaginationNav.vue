@@ -2,7 +2,7 @@
   <div>
     <b-pagination
         v-model="currentPage"
-        :total-rows="rows"
+        :total-rows="totalRows"
         :per-page="perPage"
         aria-controls="my-table"
         last-number
