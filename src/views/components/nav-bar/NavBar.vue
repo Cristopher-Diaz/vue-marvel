@@ -16,6 +16,9 @@
                     <b-nav-item>
                         <b-button block variant="primary"><router-link class="link" to="/characters">Personajes</router-link></b-button>
                     </b-nav-item>
+                    <b-nav-item>
+                        <b-button block variant="primary"><router-link class="link" to="/events">Eventos</router-link></b-button>
+                    </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
                     <b-nav-form>

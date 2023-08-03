@@ -13,7 +13,7 @@
           <template #cell(actions)="scope">
             <div class="text-center">
               <b-button variant="success" v-b-tooltip.hover title="Más detalles" @click="returnDataRow(scope.item)"><b-icon icon="arrow-up"></b-icon></b-button>
-              <b-button variant="danger" class="ml-2" v-b-tooltip.hover title="Eliminar" @click="returnDataRow(scope.item)"><b-icon icon="exclamation-triangle"></b-icon></b-button>
+              <b-button variant="danger" class="ml-2" v-b-tooltip.hover title="Eliminar" @click="returnDataRowToDelete(scope.item)"><b-icon icon="exclamation-triangle"></b-icon></b-button>
             </div>
           </template>
           <template #head(calification)="scope">
@@ -54,6 +54,9 @@ export default {
   methods: {
     returnDataRow (rowData) {
       this.$emit('sendData', rowData)
+    },
+    returnDataRowToDelete (rowData) {
+      this.$emit('sendDataToDelete', rowData.id)
     }
   }
 };

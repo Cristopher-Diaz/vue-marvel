@@ -14,6 +14,12 @@ const routes = [
     name: 'AboutView',
     component: () => import('../views/AboutView.vue')
   },
+  // Sección Eventos
+  {
+    path: '/events',
+    name: 'EventsView',
+    component: () => import('../views/modules/events/EventsView.vue')
+  },
   {
     path: '/characters',
     name: 'CharactersView',
