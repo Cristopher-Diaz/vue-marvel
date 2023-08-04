@@ -2,6 +2,7 @@
   <b-container>
     <table-render :rows="marvelComics" :fields="fields"></table-render>
     <card-render></card-render>
+    <b-button variant="dark" @click="alert()">boton</b-button>
   </b-container>
 </template>
 
@@ -36,6 +37,9 @@ export default {
   methods: {
     dateFormat(date) {
       return new Date(date).toLocaleDateString('en-GB')
+    },
+    alert(){
+      this.$swal.fire('Any fool can use a computer')
     }
   }
 }
