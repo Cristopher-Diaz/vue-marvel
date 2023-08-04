@@ -7,7 +7,9 @@
         aria-controls="my-table"
         last-number
         size="lg"
-      ></b-pagination>
+        @input="pageChanged"
+      >
+      </b-pagination>
   </div>
 </template>
 
@@ -24,6 +26,11 @@
     data() {
       return {
         currentPage: 1
+      }
+    },
+    methods: {
+      pageChanged() {
+        this.$emit('page-changed', this.currentPage)
       }
     }
   }
