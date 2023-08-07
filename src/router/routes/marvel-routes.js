@@ -48,5 +48,16 @@ export default [
     name: 'CharacterView',
     label: 'Personaje',
     component: () => import('@/views/modules/characters/CharacterView.vue')
+  },
+    // Sección Comics
+  {
+    path: '/comics',
+    name: 'ComicsView',
+    label: 'Comics',
+    icon: {
+      icon: 'book-half',
+      variant: 'ligth'
+    },
+    component: () => import('@/views/modules/comics/ComicView.vue')
   }
 ]
