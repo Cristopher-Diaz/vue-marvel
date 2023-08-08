@@ -40,8 +40,6 @@ export default {
       this.scrollToTop()
       this.perPage = amount
       this.amountCharacters = amount
-      console.log(((this.amountCharacters * this.actualPage) - this.amountCharacters))
-      console.log(this.actualPage, amount)
       this.charactersService.callService('getCharacters', {}, {offset: ((this.actualPage * amount) - amount), limit: amount})
         .then(res => {
           this.loading.card = true
