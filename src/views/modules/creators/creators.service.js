@@ -1,9 +1,9 @@
 import axios from 'axios'
 const services = [
-  { name: 'getComics', url: `https://gateway.marvel.com:443/v1/public/comics?ts=1&apikey=980c22f78b757fbd27daa5f16663af6f&hash=7b790268939f2e1b3a4f86098b0655f5`, method: 'get'}
+  { name: 'getCreators', url: `https://gateway.marvel.com:443/v1/public/creators?ts=1&apikey=980c22f78b757fbd27daa5f16663af6f&hash=7b790268939f2e1b3a4f86098b0655f5`, method: 'get'}
 ]
 
-export default class ComicsService  {
+export default class CreatorsService  {
   /**
    * Función que genera una request
    * @param {String} name Nombre del servicio a consumir

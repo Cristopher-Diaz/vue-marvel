@@ -22,7 +22,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
-                    <search-input></search-input>
+                    <search-input @search="inputValue"></search-input>
                 </b-navbar-nav>
             </b-collapse>
         </b-container>
@@ -32,11 +32,41 @@
 
 <script>
 import marvelRoutes from '@/router/routes/marvel-routes'
+import CharactersService from "../../modules/characters/characters.service"
+import ComicsService from "../../modules/comics/comics.service"
+import CreatorsService from "../../modules/creators/creators.service"
+import EventsService from "../../modules/events/events.service"
+import SeriesService from "../../modules/series/series.service"
+import StoriesService from "../../modules/stories/stories.service"
 
 export default {
     data () {
         return {
-            marvelRoutes
+            marvelRoutes,
+            charactersService: new CharactersService(this),
+            comicsService: new ComicsService(this),
+            creatorsService: new CreatorsService(this),
+            eventsService: new EventsService(this),
+            seriesService: new SeriesService(this),
+            storiesService: new StoriesService(this),
+            allData : []
+        }
+    },
+    methods: {
+        inputValue(search) {
+            console.log(search)
+            this.charactersService.callService('getCharacters', {}, {})
+                .then(res => console.log(res.data.data.results))
+            this.comicsService.callService('getComics')
+                .then(res => console.log(res.data.data.results))
+            this.creatorsService.callService('getCreators')
+                .then(res => console.log(res.data.data.results))
+            this.eventsService.callService('getEvents')
+                .then(res => console.log(res.data.data.results))
+            this.seriesService.callService('getSeries')
+                .then(res => console.log(res.data.data.results))
+            this.storiesService.callService('getStories')
+                .then(res => console.log(res.data.data.results))
         }
     },
     computed: {
