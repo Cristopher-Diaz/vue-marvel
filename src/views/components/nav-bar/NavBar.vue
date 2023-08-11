@@ -22,7 +22,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
-                    <search-input @search="inputValue"></search-input>
+                    <search-input @search="searchFilter" :loadingSearch="loading.search"></search-input>
                 </b-navbar-nav>
             </b-collapse>
         </b-container>
@@ -49,24 +49,68 @@ export default {
             eventsService: new EventsService(this),
             seriesService: new SeriesService(this),
             storiesService: new StoriesService(this),
-            allData : []
+            allData : [],
+            searchFiltered: [],
+            loading: {
+                search: false
+            }
         }
     },
     methods: {
-        inputValue(search) {
-            console.log(search)
-            this.charactersService.callService('getCharacters', {}, {})
-                .then(res => console.log(res.data.data.results))
-            this.comicsService.callService('getComics')
-                .then(res => console.log(res.data.data.results))
-            this.creatorsService.callService('getCreators')
-                .then(res => console.log(res.data.data.results))
-            this.eventsService.callService('getEvents')
-                .then(res => console.log(res.data.data.results))
-            this.seriesService.callService('getSeries')
-                .then(res => console.log(res.data.data.results))
-            this.storiesService.callService('getStories')
-                .then(res => console.log(res.data.data.results))
+        async marvelInfo() {
+            try {
+                const charactersRes = await this.charactersService.callService('getCharacters', {}, {limit: 100})
+                const comicsRes = await this.comicsService.callService('getComics', {}, {limit: 100})
+                const creatorsRes = await this.creatorsService.callService('getCreators', {}, {limit: 100})
+                const eventsRes = await this.eventsService.callService('getEvents', {}, {limit: 100})
+                const seriesRes = await this.seriesService.callService('getSeries', {}, {limit: 100})
+                const storiesRes = await this.storiesService.callService('getStories', {}, {limit: 100})
+
+                const charactersArray = charactersRes.data.data.results
+                const comicsArray = comicsRes.data.data.results
+                const creatorsArray = creatorsRes.data.data.results
+                const eventsArray = eventsRes.data.data.results
+                const seriesArray = seriesRes.data.data.results
+                const storiesArray = storiesRes.data.data.results
+
+                charactersArray.forEach(data => this.allData.push(data))
+                comicsArray.forEach(data => this.allData.push(data))
+                creatorsArray.forEach(data => this.allData.push(data))
+                eventsArray.forEach(data => this.allData.push(data))
+                seriesArray.forEach(data => this.allData.push(data))
+                storiesArray.forEach(data => this.allData.push(data))
+            } catch (error) {
+                console.log(error)
+            }
+        },
+
+        async searchFilter(search) {
+            this.loading.search = true
+            await this.marvelInfo()
+            this.searchFiltered = this.filterStrings(search)
+            console.log(this.searchFiltered)
+            this.loading.search = false
+        },
+
+        filterStrings(search) {
+            const searchClean = this.cleanStrings(search)
+            const filter = this.allData.filter(info => {
+                if(info.firstName && this.cleanStrings(info.firstName).includes(searchClean)) {
+                    return true
+                }
+                if(info.name && this.cleanStrings(info.name).includes(searchClean)) {
+                    return true
+                }
+                if(info.title && this.cleanStrings(info.title).includes(searchClean)) {
+                    return true
+                }
+                return false
+            })
+            return filter
+        },
+
+        cleanStrings(str) {
+            return str.normalize('NFD').replace(/[^\w]/g, '').toLowerCase()
         }
     },
     computed: {
