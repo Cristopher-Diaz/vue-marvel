@@ -57,6 +57,9 @@ export default {
         }
     },
     methods: {
+        /**
+         * Función que realiza el llamado a las apis y llena de información el array allData
+         */
         async marvelInfo() {
             try {
                 const charactersRes = await this.charactersService.callService('getCharacters', {}, {limit: 100})
@@ -84,14 +87,24 @@ export default {
             }
         },
 
+        /**
+         * Función que realiza el llamado a las apis, en base a ese array con información llevar a cabo la búsqueda cambiando la vista para mostrar dicha información
+         * @param { String } search Value del input de búsqueda
+         */
         async searchFilter(search) {
             this.loading.search = true
+            this.allData = []
             await this.marvelInfo()
             this.searchFiltered = this.filterStrings(search)
             console.log(this.searchFiltered)
             this.loading.search = false
+            this.$router.push('/search')
         },
 
+        /**
+         * Funcion que retorna un array de objs filtrados de acuerdo al parámetro search
+         * @param { String } search Value del input de búsqueda
+         */
         filterStrings(search) {
             const searchClean = this.cleanStrings(search)
             const filter = this.allData.filter(info => {
@@ -109,15 +122,20 @@ export default {
             return filter
         },
 
+        /**
+         * Retorna un string limpio de carácteres especiales, mayúsculas y espacios vacíos
+         * @param { String } str String que va a pasar por la fn
+         */
         cleanStrings(str) {
             return str.normalize('NFD').replace(/[^\w]/g, '').toLowerCase()
         }
     },
     computed: {
+        /** 
+         * Retorna un array filtrando solamente las rutas estáticas
+         */
         filteredRoutes() {
-            // Filtrar las rutas dinámicas con una regex
-            const dynamicRoutePattern = /:\w+/
-            return this.marvelRoutes.filter(route => !dynamicRoutePattern.test(route.path))
+            return marvelRoutes.filter(route => route.show_in_nav)
         }
     }
 }

@@ -55,10 +55,7 @@ export default {
     getCharacter() {
       this.charactersService
         .callService("getCharacter", { character_id: this.$route.params.id })
-        .then(res => {
-            console.log(res.data.data.results[0])
-            this.character = res.data.data.results[0]
-        })
+        .then(res => this.character = res.data.data.results[0])
     },
   },
   mounted() {
