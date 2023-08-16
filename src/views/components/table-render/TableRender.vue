@@ -1,10 +1,6 @@
 <template>
   <div class="mt-4">
     <div class="border rounded p-4">
-      <!-- <div class="d-flex justify-content-between align-items-center mb-4">
-        <p class="m-0">Comics correspondientes a Marvel</p>
-        <b-button variant="info">Ver más</b-button>
-      </div> -->
       <div>
         <b-table :items="rows" :fields="fields" responsive fixed>
           <template #head(actions)="scope">
