@@ -96,9 +96,11 @@ export default {
             this.allData = []
             await this.marvelInfo()
             this.searchFiltered = this.filterStrings(search)
-            console.log(this.searchFiltered)
             this.loading.search = false
-            this.$router.push('/search')
+            this.$router.push({
+                name: 'SearchView',
+                params: {relatedSearches: JSON.stringify(this.searchFiltered)}
+            })
         },
 
         /**
