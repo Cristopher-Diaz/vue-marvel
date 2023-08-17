@@ -1,17 +1,17 @@
 <template>
   <b-container>
     <!-- Renderiza la tabla de cómics utilizando el componente table-render -->
-    <table-render :rows="marvelComics" :fields="fields"></table-render>
-    
-    <!-- Renderiza el componente card-render -->
-    <card-render></card-render>
+    <table-render :rows="marvelComics" :fields="fields" @sendData="detailsComic" @sendDataToDelete="deleteComic"></table-render>
+    <modal-detail-comics :marvelDetail="marvelDetail"></modal-detail-comics>
   </b-container>
 </template>
 
 <script>
 import comicsService from "./comics.service";
+import ModalDetailComics from './ModalDetailComics.vue';
 
 export default {
+  components: { ModalDetailComics },
   name: 'ComicView',
   data() {
     return {
@@ -29,6 +29,7 @@ export default {
       comicsService: new comicsService(this),
       // Array con info para mostrar el contenido de la tabla 
       marvelComics: [],
+      marvelDetail: {},
     };
   },
   methods: {
@@ -49,6 +50,13 @@ export default {
     alert() {
       this.$swal.fire('Any fool can use a computer');
     },
+    detailsComic(dataComic) {
+      this.marvelDetail = dataComic
+      this.$bvModal.show("modal-detail")
+    },
+    deleteComic(id){
+      this.marvelComics = this.marvelComics.filter(comic => comic.id !== id)// ocupar sweet alert
+    }
   },
   mounted() {
     // Llamada al método getComics al montar el componente
