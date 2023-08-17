@@ -28,7 +28,7 @@
             <h1>{{ cardInfo.title }}</h1>
             <p>{{ cardInfo.date }}</p>
             <p>{{ cardInfo.description ? cardInfo.description : "Este articulo no tiene descripción" }}</p>
-            <b-button variant="warning" @click="returnCardData(cardInfo)">informacios</b-button>
+            <b-button variant="warning" @click="returnCardData(cardInfo)">información</b-button>
           </div>
           
         </div>
