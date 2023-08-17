@@ -7,6 +7,12 @@
       </div> -->
       <div>
         <b-table :items="rows" :fields="fields" responsive fixed>
+          <template #head(index)="scope">
+            <div>{{ scope.label }}</div>
+          </template>
+          <template #cell(index)="scope">
+            <div>{{ scope.index + 1 }}</div>
+          </template>
           <template #head(actions)="scope">
             <div class="text-center">{{ scope.label }}</div>
           </template>

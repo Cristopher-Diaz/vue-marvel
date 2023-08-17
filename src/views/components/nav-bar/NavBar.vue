@@ -99,8 +99,8 @@ export default {
             this.loading.search = false
             this.$router.push({
                 name: 'SearchView',
-                params: {relatedSearches: JSON.stringify(this.searchFiltered)}
-            })
+                params: { relatedSearches: JSON.stringify(this.searchFiltered) }
+            })   
         },
 
         /**
