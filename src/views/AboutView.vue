@@ -4,7 +4,7 @@
     <card-render></card-render>
     <b-button variant="dark" @click="alert()">boton</b-button> -->
 
-    <gallery-render :galleryData="marvelData"></gallery-render>
+    <gallery-render :galleryData="marvelData" @sendData="info"></gallery-render>
   </b-container>
 </template>
 
@@ -47,11 +47,13 @@ export default {
             description: element.description,
           }
         })
-        console.log(this.marvelData)
       })
   },
   // Formateo de fecha
   methods: {
+    info(data){
+      console.log(data)
+    }
     // dateFormat(date) {
     //   return new Date(date).toLocaleDateString('en-GB')
     // },

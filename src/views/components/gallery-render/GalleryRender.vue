@@ -12,6 +12,7 @@
           @click="onSelectGalleryItem(data)"
         />
       </div>
+      <!-- seccion que muestra un elemento individual del array -->
       <div v-if="cardInfo != null">
         <div class="image_content">
           <img
@@ -27,7 +28,9 @@
             <h1>{{ cardInfo.title }}</h1>
             <p>{{ cardInfo.date }}</p>
             <p>{{ cardInfo.description ? cardInfo.description : "Este articulo no tiene descripción" }}</p>
+            <b-button variant="warning" @click="returnCardData(cardInfo)">informacios</b-button>
           </div>
+          
         </div>
       </div>
     </div>
@@ -39,7 +42,7 @@ export default {
   name: "gallery-render",
    /**
    * El componente recibira una 'props'
-   * *galleryData: corresponde a un array con la informacion a mosntrar
+   * *galleryData: corresponde a un array con la informacion a mostrar
    */
   props: {
     galleryData: {
@@ -52,16 +55,16 @@ export default {
     };
   },
   methods: {
-    //la siguiente funcion recibe un parametro que va a ser un elemento del array principal
+    //la siguiente funcion recibe un parametro que va a ser un elemento de galleryData
     onSelectGalleryItem(data) {
       this.cardInfo = data;
     },
+    returnCardData(data){
+      this.$emit('sendData', data)
+    }
   },
-  // mounted() {
-  //   this.onSelectGalleryItem(this.galleryData[0])
-  // },
   watch: {
-    //sirve para mostrar el primer elemento del array principal
+    //sirve para mostrar el primer elemento de galleryData
     galleryData(){
       this.onSelectGalleryItem(this.galleryData[0])
     } 
