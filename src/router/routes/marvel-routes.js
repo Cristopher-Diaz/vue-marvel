@@ -60,5 +60,12 @@ export default [
     name: 'SearchView',
     show_in_nav: false,
     component: () => import('@/views/modules/global-search/SearchView.vue')
+  },
+  // Sección spinner de carga
+  {
+    path: '/spinner',
+    name: 'SpinnerView',
+    show_in_nav: false,
+    component: () => import('@/views/modules/spinner/SpinnerView.vue')
   }
 ]

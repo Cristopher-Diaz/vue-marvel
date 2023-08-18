@@ -94,6 +94,7 @@ export default {
         async searchFilter(search) {
             this.loading.search = true
             this.allData = []
+            this.$router.push('/spinner')
             await this.marvelInfo()
             this.searchFiltered = this.filterStrings(search)
             this.loading.search = false
