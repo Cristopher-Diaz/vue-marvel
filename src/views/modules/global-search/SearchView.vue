@@ -13,6 +13,7 @@
 
 <script>
 import ModalSearchDetails from "./ModalSearchDetails"
+
 export default {
   components: { ModalSearchDetails },
   data() {
@@ -28,6 +29,10 @@ export default {
       ]
     }
   },
+  /**
+   * El campo seleccionado mediante el botón de más detalles renderiza con el uso de un modal la información adicional 
+   * @param { Obj } data Objeto que se muestra en el modal
+   */
   methods: {
     selectedField(data) {
       this.selectedSearch = data
@@ -35,6 +40,9 @@ export default {
     }
   },
   computed: {
+    /**
+   * Retorna un array con objetos modificados para que al momento de mostrar la información de forma general si un objeto no posee cierto atributo no sea undefined y posea una respuesta por defecto
+   */
     formattedSearches() {
       return this.searches.map(search => ({
         ...search,

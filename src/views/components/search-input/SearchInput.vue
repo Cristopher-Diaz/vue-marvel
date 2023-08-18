@@ -7,6 +7,9 @@
 
 <script>
 export default {
+    /**
+   * loadingSearch: Booleano encargado de bloquear el botón mientras se realiza la búsqueda
+   */
     props: {
         loadingSearch: {
             type: Boolean
