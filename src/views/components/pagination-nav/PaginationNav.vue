@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="mb-3" v-if="showSelect">
-      <b-form-select v-model="selected" :options="options" @input="amountCharacters"></b-form-select>
-    </div>
+    <!-- Navegation boostrap component -->
     <b-pagination
         v-model="currentPage"
         :total-rows="totalRows"
@@ -12,19 +10,26 @@
         size="lg"
         @input="pageChanged"
       >
-      </b-pagination>
+    </b-pagination>
+    <!-- Selector page -->
+    <div class="mb-3" v-if="showSelect">
+      <b-form-select v-model="selected" :options="options" @input="amountCharacters"></b-form-select>
+    </div>
   </div>
 </template>
 
 <script>
   export default {
     props: {
+      // Total de datos a mostrar 
       totalRows: {
         type: Number
       },
+      // Cantidad de datos a mostrar por llamado a la api
       perPage: {
         type: Number
       },
+      // Habilitar o deshabilitar selector
       showSelect: {
         type: Boolean
       }
@@ -34,10 +39,11 @@
         currentPage: 1,
         selected: null,
         options: [
-          { value: null, text: 'Elige la cantidad de personajes a visualizar por página', disabled: true },
+          { value: null, text: 'Elige la cantidad de datos a visualizar por página', disabled: true },
           { value: 5, text: '5' },
           { value: 10, text: '10' },
-          { value: 25, text: '25' }
+          { value: 20, text: '20' },
+          { value: 30, text: '30' }
         ]
       }
     },
