@@ -22,7 +22,7 @@
                     </b-nav-item>
                 </b-navbar-nav>
                 <b-navbar-nav class="ml-auto">
-                    <search-input @search="searchFilter" :loadingSearch="loading.search"></search-input>
+                    <search-input @btnSearch="searchFilter" @search="searchFilter" :loadingSearch="loading.search"></search-input>
                 </b-navbar-nav>
             </b-collapse>
         </b-container>
@@ -76,12 +76,7 @@ export default {
                 const seriesArray = seriesRes.data.data.results
                 const storiesArray = storiesRes.data.data.results
 
-                charactersArray.forEach(data => this.allData.push(data))
-                comicsArray.forEach(data => this.allData.push(data))
-                creatorsArray.forEach(data => this.allData.push(data))
-                eventsArray.forEach(data => this.allData.push(data))
-                seriesArray.forEach(data => this.allData.push(data))
-                storiesArray.forEach(data => this.allData.push(data))
+                this.allData = [...charactersArray, ...comicsArray, ...creatorsArray, ...eventsArray, ...seriesArray, ...storiesArray]
             } catch (error) {
                 console.log(error)
             }
