@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="mb-3" v-if="showSelect">
-      <b-form-select v-model="selected" :options="options" @input="amountCharacters"></b-form-select>
-    </div>
     <b-pagination
         v-model="currentPage"
         :total-rows="totalRows"
@@ -13,6 +10,9 @@
         @input="pageChanged"
       >
       </b-pagination>
+    <div class="mb-3" v-if="showSelect">
+      <b-form-select v-model="selected" :options="options" @input="amountCharacters"></b-form-select>
+    </div>
   </div>
 </template>
 
@@ -42,9 +42,15 @@
       }
     },
     methods: {
+      /**
+       * Emisión del evento input cuando se cambia de página 
+       */
       pageChanged() {
         this.$emit('page-changed', this.currentPage)
       },
+      /**
+       * Emisión del evento input cuando se selecciona x número en el select
+       */
       amountCharacters() {
         this.$emit('amount-characters', this.selected)
       }
