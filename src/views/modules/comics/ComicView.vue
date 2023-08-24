@@ -2,6 +2,7 @@
   <b-container>
     <!-- Renderiza la tabla de cómics utilizando el componente table-render -->
     <table-render :rows="marvelComics" :fields="fields" @sendData="detailsComic" @sendDataToDelete="deleteComic"></table-render>
+    <pagination-nav  :totalRows="totalRows" :perPage="perPage" :showSelect="true" @page-changed="getComics" @amount-characters="amountCharacters"></pagination-nav>
     <modal-detail-comics :marvelDetail="marvelDetail"></modal-detail-comics>
   </b-container>
 </template>
@@ -30,18 +31,28 @@ export default {
       // Array con info para mostrar el contenido de la tabla 
       marvelComics: [],
       marvelDetail: {},
+      totalRows: null,
+      perPage: null,
+      limit: null,
     };
   },
   methods: {
     // Método para obtener los cómics a través del servicio
-    getComics() {
+    getComics(page) {
+      this.scrollToTop()
+      page = page ? page : 1
       this.comicsService
-        .callService("getComics", { comics_id: this.$route.params.id }, {})
+        .callService("getComics", {}, {offset: ((this.perPage * page) - this.perPage), limit: this.limit ? this.limit : 20})
         .then(res => {
-          //console.log(res.data.data.results);
           this.marvelComics = res.data.data.results;
+          this.totalRows = res.data.data.total;
+          this.perPage = res.data.data.limit;
         });
     },
+    amountCharacters(data){
+      this.limit = data
+    },
+
     // Función para formatear la fecha
     dateFormat(date) {
       return new Date(date).toLocaleDateString('en-GB');
@@ -56,11 +67,18 @@ export default {
     },
     deleteComic(id){
       this.marvelComics = this.marvelComics.filter(comic => comic.id !== id)// ocupar sweet alert
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
     }
   },
   mounted() {
     // Llamada al método getComics al montar el componente
     this.getComics();
+    
   }
 };
 </script>

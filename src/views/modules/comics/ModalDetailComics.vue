@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-4">
           <label><b> Precio</b></label>
-          <div class="ml-1">{{ marvelDetail.prices.price || "--" }}</div>
+          <div class="ml-1">{{ marvelDetail.prices?.price || "--" }}</div>
         </div>
         <!--  descripcion -->
         <div class="col-md-12 text-center">
