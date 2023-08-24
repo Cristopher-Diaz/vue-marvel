@@ -1,9 +1,9 @@
 import axios from 'axios'
 const services = [
-  { name: 'getEvents', url: `https://gateway.marvel.com:443/v1/public/events`, method: 'get'}
+  { name: 'getSeries', url: `https://gateway.marvel.com:443/v1/public/series`, method: 'get'}
 ]
 
-export default class EventsService  {
+export default class SeriesService  {
   constructor() {
     this.envUrlParams = {
       ts: 1,
