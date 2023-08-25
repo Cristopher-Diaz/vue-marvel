@@ -3,6 +3,12 @@
     <div class="border rounded p-4">
       <div>
         <b-table :items="rows" :fields="fields" responsive fixed>
+          <template #head(index)="scope">
+            <div>{{ scope.label }}</div>
+          </template>
+          <template #cell(index)="scope">
+            <div>{{ scope.index + 1 }}</div>
+          </template>
           <template #head(actions)="scope">
             <div class="text-center">{{ scope.label }}</div>
           </template>
@@ -10,16 +16,6 @@
             <div class="text-center">
               <b-button variant="success" v-b-tooltip.hover title="Más detalles" @click="returnDataRow(scope.item)"><b-icon icon="arrow-up"></b-icon></b-button>
               <b-button variant="danger" class="ml-2" v-b-tooltip.hover title="Eliminar" @click="returnDataRowToDelete(scope.item)"><b-icon icon="exclamation-triangle"></b-icon></b-button>
-            </div>
-          </template>
-          <template #head(calification)="scope">
-            <div class="text-center">{{ scope.label }}</div>
-          </template>
-          <template #cell(calification)="scope">
-            <div class="text-center">
-              <b-badge pill variant="primary">
-                {{ scope.item.calification }}
-              </b-badge>
             </div>
           </template>
         </b-table>

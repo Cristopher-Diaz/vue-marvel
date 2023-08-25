@@ -3,7 +3,7 @@ const services = [
   { name: 'getComics', url: `https://gateway.marvel.com:443/v1/public/comics`, method: 'get'}
 ]
 
-export default class comicsService  {
+export default class ComicsService  {
   constructor() {
     this.envUrlParams = {
       ts: 1,
@@ -18,7 +18,6 @@ export default class comicsService  {
   async callService(name, pathParams = {}, urlParams = {}) {
     const service = services.filter(service => service.name === name)[0]
     const serviceUrl = this.validateUrlParams(this.validatePathParams(service.url, pathParams), urlParams)
-  
     return axios({
         method: service.method,
         url: serviceUrl,
