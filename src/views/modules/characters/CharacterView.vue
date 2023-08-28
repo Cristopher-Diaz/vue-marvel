@@ -42,26 +42,23 @@
 </template>
 
 <script>
-import CharactersService from "./characters.service";
+import CharactersService from "./characters.service"
 
 export default {
   data() {
     return {
       charactersService: new CharactersService(this),
       character: null,
-    };
+    }
   },
-  methods: {
-    getCharacter() {
-      this.charactersService
-        .callService("getCharacter", { character_id: this.$route.params.id })
-        .then(res => this.character = res.data.data.results[0])
-    },
-  },
+  /**
+   * Hace el llamado a la api de characters para renderizar el personaje en específico de acuerdo a la id rescatada de la url
+   */
   mounted() {
-    this.getCharacter();
-  },
-};
+    this.charactersService.callService("getCharacter", { character_id: this.$route.params.id })
+      .then(res => this.character = res.data.data.results[0])
+  }
+}
 </script>
 
 <style scoped>
