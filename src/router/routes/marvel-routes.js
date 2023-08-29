@@ -49,34 +49,35 @@ export default [
   },
   {
     path: '/character/:id',
-    nombre : 'Vista de caracteres' ,
-    etiqueta : 'Personaje' ,
-    show_in_nav : falso ,
-    componente : () =>  importar ( '@/views/modules/characters/CharacterView.vue' )
+    name: 'Vista de caracteres' ,
+    label: 'Personaje' ,
+    show_in_nav: false ,
+    component: () =>  import ( '@/views/modules/characters/CharacterView.vue' )
   },
   // Sección Cómics
   {
-    ruta : '/cómics' , 
-    nombre : 'ComicsView' , 
-    etiqueta : 'Cómics' , 
-    icono : { 
-      icono : 'medio libro' , 
-      variante : 'luz' 
+    path: '/comics' , 
+    name: 'ComicsView' , 
+    label: 'Comics' , 
+    show_in_nav: true,
+    icon: { 
+      icon : 'book-half' , 
+      variant : 'luz' 
      },
-    componente : () => importar ( '@/views/modules/comics/ComicView.vue' )   
-  }
+    component : () => import ( '@/views/modules/comics/ComicView.vue' )   
+  },
   // Sección búsqueda global
   {
-    ruta : '/buscar' , 
-    nombre : 'BuscarVista' , 
-    show_in_nav : falso , 
-    componente : () => importar ( '@/views/modules/global-search/SearchView.vue' )   
+    path : '/buscar' , 
+    name : 'BuscarVista' , 
+    show_in_nav : false , 
+    component : () => import ( '@/views/modules/global-search/SearchView.vue' )   
   },
   // Sección spinner de carga
   {
-    ruta : '/spinner' , 
-    nombre : 'SpinnerView' , 
-    show_in_nav : falso , 
-    componente : () => importar ( '@/views/modules/spinner/SpinnerView.vue' )  
+    path : '/spinner' , 
+    name : 'SpinnerView' , 
+    show_in_nav : false , 
+    component : () => import ( '@/views/modules/spinner/SpinnerView.vue' )  
   }
 ]
