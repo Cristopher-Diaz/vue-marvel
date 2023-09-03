@@ -11,7 +11,7 @@
       :totalRows="totalRows"
       :perPage="perPage"
       :showSelect="true"
-      @page-changed="getComics"
+      @page-changed="onChangePage"
       @amount-characters="amountCharacters"
     ></pagination-nav>
     <modal-detail-comics :marvelDetail="marvelDetail"></modal-detail-comics>
@@ -45,34 +45,44 @@ export default {
       totalRows: null,
       perPage: null,
       limit: null,
+      page: 1
     };
   },
   methods: {
     // Método para obtener los cómics a través del servicio
-    getComics(page) {
-      this.scrollToTop();
-      page = page ? page : 1;
-      this.comicsService
-        .callService(
-          "getComics",
-          {},
-          {
-            offset: this.perPage * page - this.perPage,
-            limit: this.limit ? this.limit : 20,
+    getComics() {
+    const offset = this.perPage * this.page - this.perPage
+    this.comicsService
+      .callService('getComics', {}, {
+        offset: offset,
+        limit: this.perPage || 20,
+      })
+      .then((res) => {
+        this.marvelComics = res.data.data.results
+        this.totalRows = res.data.data.total
+        this.perPage = res.data.data.limit
+        this.marvelComics.forEach((comic) => {
+          if (comic.modified) {
+            comic.modified = this.dateFormat(comic.modified)
           }
-        )
-        .then((res) => {
-          this.marvelComics = res.data.data.results;
-          this.totalRows = res.data.data.total;
-          this.perPage = res.data.data.limit;
         });
+      })
+  },
+    onChangePage(page){
+      this.page = page
+      this.scrollToTop();
+      this.getComics()
+      
     },
     amountCharacters(data) {
-      this.limit = data;
+      this.perPage = data
+      console.log(data)
+      this.getComics()
     },
 
     // Función para formatear la fecha
     dateFormat(date) {
+      
       return new Date(date).toLocaleDateString("en-GB");
     },
     // Función para mostrar una alerta
@@ -107,7 +117,7 @@ export default {
   },
   mounted() {
     // Llamada al método getComics al montar el componente
-    this.getComics();
+    this.getComics(this.page)
   },
 };
 </script>
