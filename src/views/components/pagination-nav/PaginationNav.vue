@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Navegation boostrap component -->
     <b-pagination
         v-model="currentPage"
         :total-rows="totalRows"
@@ -10,8 +9,7 @@
         size="lg"
         @input="pageChanged"
       >
-    </b-pagination>
-    <!-- Selector page -->
+      </b-pagination>
     <div class="mb-3" v-if="showSelect">
       <b-form-select v-model="selected" :options="options" @input="amountCharacters"></b-form-select>
     </div>
@@ -48,9 +46,15 @@
       }
     },
     methods: {
+      /**
+       * Emisión del evento input cuando se cambia de página 
+       */
       pageChanged() {
         this.$emit('page-changed', this.currentPage)
       },
+      /**
+       * Emisión del evento input cuando se selecciona x número en el select
+       */
       amountCharacters() {
         this.$emit('amount-characters', this.selected)
       }
