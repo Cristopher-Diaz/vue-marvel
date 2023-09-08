@@ -15,7 +15,7 @@ export default class ComicsService  {
    * Función que genera una request
    * @param {String} name Nombre del servicio a consumir
    */
-  async callService (name, pathParams = {}, urlParams = {}) {
+  async callService(name, pathParams = {}, urlParams = {}) {
     const service = services.filter(service => service.name === name)[0]
     const serviceUrl = this.validateUrlParams(this.validatePathParams(service.url, pathParams), urlParams)
     return axios({
