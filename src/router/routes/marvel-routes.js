@@ -49,17 +49,29 @@ export default [
   },
   {
     path: '/character/:id',
-    name: 'CharacterView',
-    label: 'Personaje',
-    show_in_nav: false,
-    component: () => import('@/views/modules/characters/CharacterView.vue')
+    name: 'Vista de caracteres' ,
+    label: 'Personaje' ,
+    show_in_nav: false ,
+    component: () =>  import ( '@/views/modules/characters/CharacterView.vue' )
+  },
+  // Sección Cómics
+  {
+    path: '/comics' , 
+    name: 'ComicsView' , 
+    label: 'Comics' , 
+    show_in_nav: true,
+    icon: { 
+      icon : 'book-half' , 
+      variant : 'luz' 
+     },
+    component : () => import ( '@/views/modules/comics/ComicView.vue' )   
   },
   // Sección búsqueda global
   {
-    path: '/search',
-    name: 'SearchView',
-    show_in_nav: false,
-    component: () => import('@/views/modules/global-search/SearchView.vue')
+    path : '/buscar' , 
+    name : 'BuscarVista' , 
+    show_in_nav : false , 
+    component : () => import ( '@/views/modules/global-search/SearchView.vue' )   
   },
   // Sección spinner de carga
   {
