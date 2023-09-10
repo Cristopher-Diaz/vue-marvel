@@ -1,21 +1,25 @@
 <template>
   <div>
     <b-container>
-      <gallery-render :galleryData="marvelData" :loadingCard="loading.card"></gallery-render>
+      <gallery-render :galleryData="marvelData" :loadingCard="loading.card" @sendData="btnInfo"></gallery-render>
       <pagination-nav
         class="d-flex flex-column justify-content-center align-items-center mt-5" :totalRows="rows" :perPage="perPage" @page-changed="currentPage" :showSelect="true" @amount-characters="numberCreators"></pagination-nav>
     </b-container>
+    <modal-details :dataCreator="detailsCreator"></modal-details>
   </div>
 </template>
 
 <script>
 import CreatorsService from "./creators.service";
+import ModalDetails from "./ModalCreators.vue"
 export default {
   name: "creatorsView",
+  components:{ModalDetails},
   data() {
     return {
       creatorsService: new CreatorsService(this),
       marvelData: [],
+      detailsCreator:{},
       rows: null,
       perPage: null,
       actualPage: null,
@@ -26,6 +30,11 @@ export default {
     };
   },
   methods: {
+    btnInfo(data){
+      this.detailsCreator = data
+      console.log(this.detailsCreator)
+      this.$bvModal.show('details')
+    },
     getCreators(urlParams, firstLoad) {
       this.creatorsService.callService("getCreators", {}, urlParams)
       .then(res => {
