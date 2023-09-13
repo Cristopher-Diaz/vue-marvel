@@ -75,9 +75,21 @@ export default [
   },
   // Sección spinner de carga
   {
-    path : '/spinner' , 
-    name : 'SpinnerView' , 
-    show_in_nav : false , 
-    component : () => import ( '@/views/modules/spinner/SpinnerView.vue' )  
+    path: '/spinner',
+    name: 'SpinnerView',
+    show_in_nav: false,
+    component: () => import('@/views/modules/spinner/SpinnerView.vue')
+  },
+  // Sección Creadores
+  {
+    path: "/creators",
+    name: "CreatorsView",
+    label:'Creadores',
+    show_in_nav: true,
+    icon: {
+      icon: 'person-fill',
+      variant: 'ligth'
+    },
+    component: () => import('@/views/modules/creators/CreatorsView.vue')
   }
 ]
